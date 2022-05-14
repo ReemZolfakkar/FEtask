@@ -2,9 +2,10 @@ angular
   .module('appModule')
   .controller('homeController', homePageController);
 
-function homePageController(Employees, $scope) {
+function homePageController(Employees, $scope, $location) {
   const homePageVm = this;
   homePageVm.employees = [];
+  homePageVm.filter = '';
   activate();
   function activate() {
     Employees.getEmployees()
@@ -17,5 +18,14 @@ function homePageController(Employees, $scope) {
       .then(({ data }) => {
         homePageVm.employees = homePageVm.employees.concat(data.employees);
       });
+  };
+  $scope.myChange = function (val) {
+    $location.url('?filter=' + val);
+    homePageVm.filter = val;
+  };
+  $scope.Clear = function () {
+    $scope.foo = '';
+    homePageVm.filter = '';
+    $location.url('');
   };
 }

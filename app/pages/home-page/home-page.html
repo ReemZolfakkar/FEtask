@@ -1,9 +1,12 @@
 <div class="c-dashboard">
-  <div class="c-filters__container">
-    [Place search component here]
+  <div class="c-filters__container" style="margin: auto;">
+    <div class="search-container" >
+      <input type="text" ng-model="foo" placeholder="Search .." ng-change="myChange(foo)"/>
+      <button type="submit" ng-click="Clear()" >Clear</button>
+    </div>
   </div>
 
-  <employees-list employees-list="homePageVm.employees"></employees-list>
+  <employees-list employees-list="homePageVm.employees" filter="homePageVm.filter" ></employees-list>
 
   <div class="c-dashboard__footer">
     <button class="c-button"  ng-click="loadEmploys(page=page+1)">
